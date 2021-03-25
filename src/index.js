@@ -13,6 +13,7 @@ class ImgurStorage extends BaseStorage {
         const clientId = process.env.GHOST_IMGUR_CLIENT_ID || config.clientId;
 
         imgur.setCredentials(username, password, clientId);
+        debug('upload config: ',config);
     }
 
     delete(filename, targetDir) {
@@ -33,7 +34,7 @@ class ImgurStorage extends BaseStorage {
     save(file, targetDir) {
         return imgur.uploadFile(file.path)
             .then(res => {
-                console.log(res);
+                debug('upload res: ',res);
                 return res.link;
             })
     }
