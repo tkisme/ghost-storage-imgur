@@ -7,31 +7,34 @@ class ImgurStorage extends BaseStorage {
         super()
 
         // Required config
-        const username = process.env.GHOST_IMGUR_USERNAME || config.username
-        const password = process.env.GHOST_IMGUR_PASSWORD || config.password
-        const clientId = process.env.GHOST_IMGUR_CLIENT_ID || config.clientId
+        const username = process.env.GHOST_IMGUR_USERNAME || config.username;
+        const password = process.env.GHOST_IMGUR_PASSWORD || config.password;
+        const clientId = process.env.GHOST_IMGUR_CLIENT_ID || config.clientId;
 
-        imgur.setCredentials(username, password, clientId)
+        imgur.setCredentials(username, password, clientId);
     }
 
     delete(filename, targetDir) {
-        const id = filename.substring(0, filename.indexOf('.'))
+        const id = filename.substring(0, filename.indexOf('.'));
         return imgur.getInfo(id)
             .then(res => res.data.deletehash)
             .then(imgur.deleteImage)
     }
 
     exists(filename, targetDir) {
-        return Promise.resolve(true) // Imgur will always generate a unique ID
+        return Promise.resolve(true); // Imgur will always generate a unique ID
     }
 
     read(options) {
-        return Promise.reject('Not implemented')
+        return Promise.reject('Not implemented');
     }
 
     save(file, targetDir) {
         return imgur.uploadFile(file.path)
-            .then(res => res.data.link)
+            .then(res => {
+                console.log(res.data);
+                return res.data.link;
+            })
     }
 
     serve() {
