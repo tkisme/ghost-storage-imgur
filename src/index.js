@@ -32,8 +32,8 @@ class ImgurStorage extends BaseStorage {
     save(file, targetDir) {
         return imgur.uploadFile(file.path)
             .then(res => {
-                console.log(res.data);
-                return res.data.link;
+                console.log(res);
+                return res.link;
             })
     }
 
