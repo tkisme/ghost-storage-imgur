@@ -1,7 +1,9 @@
+'use strict';
+
 import Promise from 'bluebird'
 import BaseStorage from 'ghost-storage-base'
 import imgur from 'imgur'
-import debug from 'ghost-ignition'
+const debug = require('ghost-ignition').debug('adapter');
 
 class ImgurStorage extends BaseStorage {
     constructor(config) {
