@@ -29,7 +29,8 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "ghost-storage-base": "^0.0.5",
-    "imgur": "^1.0.0"
+    "imgur": "^1.0.0",
+    "ghost-ignition": "^4.5.4",
   },
   "devDependencies": {
     "@babel/cli": "^7.13.10",
